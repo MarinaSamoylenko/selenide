@@ -31,9 +31,10 @@ public class GoogleTest extends SelenideTestBase {
         GoogleSearchPage googleSearch = new GoogleSearchPage();
         googleSearch.searchFor(searchText);
         GoogleSearchResultPage googleResult = new GoogleSearchResultPage();
+        googleResult.searchFor(searchText);
         googleResult.getLinkResults()
-                    .shouldHave(size(10))
-                    .first()
-                    .shouldHave(text("Selenide: concise UI tests in Java"));
+                .shouldHave(size(10))
+                .first()
+                .shouldHave(text("Selenide: concise UI tests in Java"));
     }
 }
