@@ -23,7 +23,7 @@ public class GoogleSearchTest extends WebDriverTestBase{
         WebElement searchField = webDriver.findElement(searchLocator);
         searchField.sendKeys(searchText);
         searchField.submit();
-        By linkLocator = By.xpath(".//*[@id='so']/div[3]/div/div[1]/div/div/h3/a");
+        By linkLocator = By.xpath(".//*[@id='so']/div[3]/div/div[1]/div/div/");
         WebElement link = webDriver.findElement(linkLocator);
         assertTrue(link.getText().contains(searchText));
     }

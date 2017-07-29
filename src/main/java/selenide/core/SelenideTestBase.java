@@ -9,11 +9,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import selenium.core.TestListener;
 
+import static java.lang.System.getProperty;
 import static org.openqa.selenium.remote.BrowserType.CHROME;
-@Listeners({TestListener.class})
+@Listeners({selenide.core.TestListener.class})
 public class SelenideTestBase {
 
-    private String browser = System.getProperty("browser", CHROME);
+    private String browser = getProperty("browser", CHROME);
 
     @BeforeClass
     public void setUp() {
@@ -26,5 +27,6 @@ public class SelenideTestBase {
                 break;
         }
         Configuration.browser = browser;
+//        Configuration.reportsFolder = getProperty("screenshot.folder");folder for report
     }
 }
