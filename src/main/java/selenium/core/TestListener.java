@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
+import static com.google.common.io.Files.toByteArray;
 import static selenide.util.PropertiesCache.getInstance;
 
 
@@ -32,14 +34,20 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         driver = ((WebDriverTestBase) iTestResult.getInstance()).webDriver;
-        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        saveScreenshot(iTestResult.getMethod().getMethodName());
+    }
+
+    @Attachment(value = "{0}")
+    public byte[] saveScreenshot(String screenshotName) {
         try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile,
-                    new File(path
-                            + iTestResult.getMethod().getMethodName() + expansion));
-        } catch (IOException e) {
+                    new File(path + screenshotName + expansion));
+            return toByteArray(scrFile);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return new byte[0];
     }
 
     @Override

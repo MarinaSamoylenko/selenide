@@ -5,9 +5,11 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
+import selenium.core.TestListener;
 
 import static org.openqa.selenium.remote.BrowserType.CHROME;
-
+@Listeners({selenium.core.TestListener.class})
 public class SelenideTestBase {
 
     private String browser = System.getProperty("browser", CHROME);
