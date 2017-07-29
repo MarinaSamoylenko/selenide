@@ -83,7 +83,7 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>${allur.plugin}</version>
+                <version>${allure.plugin}</version>
             </plugin>
         </plugins>
     </reporting>
